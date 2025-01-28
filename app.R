@@ -213,11 +213,9 @@ server <-  function(input, output, session) {
   # Map configuration
 
 
-selected_label <- reactive({ 
-  choices <- c( "Satisfacción" = "avg_satisfaction", "Calidad" = "avg_quality", "Tamaño" = "avg_size", "Ubicación" = "avg_location" ) 
-      label <- names(choices)[choices == input$perception_metric] 
-      return(label) })
+
   output$district_map <- renderHighchart({
+    choices <- c( "Satisfacción" = "avg_satisfaction", "Calidad" = "avg_quality", "Tamaño" = "avg_size", "Ubicación" = "avg_location" ) 
 
       selected_label <- names(choices)[choices == input$perception_metric]
       geo_data <- district_metrics %>%
